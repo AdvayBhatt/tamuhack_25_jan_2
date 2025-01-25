@@ -6,7 +6,7 @@ import streamlit as st
 import yfinance as yf
 
 
-
+#wow
 
 openai.api_key = open('API_KEY', 'r').read()
 
