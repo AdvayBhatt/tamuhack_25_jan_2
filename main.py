@@ -33,14 +33,32 @@ if not api_key:
 else:
     openai.api_key = api_key  # Assign user-provided key
 
-USER_DATA_URL = "http://localhost:8000/get_user_data"
+USER_DATA_URL = "http://127.0.0.1:8000/get_user_data"
+USER_DATA_FILE = "user_data.json"
+
+
+
+def get_user_data():
+    try:
+        response = requests.get(USER_DATA_URL)
+        if response.status_code == 200:
+            return response.json()
+        return {}
+    except requests.exceptions.ConnectionError:
+        st.error("❌ Could not connect to user data service.")
+        return {}
+
+#if __name__ == "__main__":
+#    import uvicorn
+#    uvicorn.run(app, host="127.0.0.1", port=8501, reload=True)
+
 
 # Function to retrieve stored user financial data
-def get_user_data():
-    response = requests.get(USER_DATA_URL)
-    if response.status_code == 200:
-        return response.json()
-    return {}
+#def get_user_data():
+#    response = requests.get(USER_DATA_URL)
+#    if response.status_code == 200:
+#       return response.json()
+#    return {}
 
 st.title("🤖 Coinvo AI:")
 st.write("💡 Ask about stock trends, investment strategies, and financial insights!")
