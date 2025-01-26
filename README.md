@@ -1,5 +1,5 @@
 # tamuhack_25_jan
-Financial Advisor helper for the Capital One challenge
+A Financial Advisor chatbot that helps users manage their funds and tracks future investments. 
 
 ## Inspiration
 
