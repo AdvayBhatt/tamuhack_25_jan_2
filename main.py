@@ -6,6 +6,7 @@ import streamlit as st
 import yfinance as yf
 import os
 import requests
+import webbrowser
 
 API_KEY_FILE = "user_api_key.txt"
 
@@ -286,3 +287,11 @@ if user_input:
             st.session_state['messages'].append({'role': 'assistant', 'content': response_message['content'] })
     except Exception as e:
         raise e
+
+# Back to Main Page Button (Opens in the same tab)
+st.markdown("""
+    <a href="http://127.0.0.1:5500/tamuhack_25_jan_2/template/" target="_self">
+        <button style="padding: 10px; font-size: 16px;">🏠 Back to Main Page</button>
+    </a>
+""", unsafe_allow_html=True)
+
