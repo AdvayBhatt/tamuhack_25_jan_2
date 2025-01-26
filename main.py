@@ -289,9 +289,39 @@ if user_input:
         raise e
 
 # Back to Main Page Button (Opens in the same tab)
-st.markdown("""
-    <a href="http://127.0.0.1:5500/tamuhack_25_jan_2/template/" target="_self">
-        <button style="padding: 10px; font-size: 16px;">🏠 Back to Main Page</button>
-    </a>
-""", unsafe_allow_html=True)
+st.markdown(f"""
+    <style>
+        .custom-button {{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            font-size: 18px;
+            padding: 12px 24px;
+            margin-top: 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }}
 
+        .custom-button:hover {{
+            background-color: #45a049;
+            transform: scale(1.05);
+        }}
+
+        .button-container {{
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }}
+    </style>
+
+    <div class="button-container">
+        <a href="http://127.0.0.1:5500/tamuhack_25_jan_2/template/" target="_self">
+            <button class="custom-button">🏡 Back to Main Page</button>
+        </a>
+    </div>
+""", unsafe_allow_html=True)
