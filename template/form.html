@@ -1,69 +1,87 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="src/scss/layout/form.css">
-        <title>Form</title>
-    </head>
-    <body>
-        <h1>Investment Form</h1>
-        <form action="/submit" method="post">
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name" required><br><br>
-            
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" required><br><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/scss/layout/form.css">
+    <title>Investment Form</title>
+</head>
+<body>
+    <h1>Investment Form</h1>
+    <form id="investmentForm">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" required><br><br>
         
-            <label for="age">Age:</label><br>
-            <input type="number" id="age" name="age" min="13" max="120" required><br><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" required><br><br>
+    
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" min="13" max="120" required><br><br>
 
-            <label for="age">What    is your monthly income?</label><br>
-            <input type="number" id="monthly-income" name="monthly-income" min="0" max="100000000000" required><br><br>
+        <label for="monthly-income">What is your monthly income?</label><br>
+        <input type="number" id="monthly-income" min="0" required><br><br>
 
-            <label for="age">What is your total debt?</label><br>
-            <input type="number" id="debt" name="debt" min="0" max="100000000000" required><br><br>
+        <label for="debt">What is your total debt?</label><br>
+        <input type="number" id="debt" min="0" required><br><br>
 
-            <label for="retirement">Are you currently contributing to any retirement accounts?
-                (e.g., 401(k), IRA, Roth IRA, etc.)
-            </label><br>
-            <select id="retirement" name="retirement" required>
-                <option value="" disabled selected>Select an option</option>
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
-            </select><br><br>
+        <label for="retirement">Are you currently contributing to any retirement accounts?</label><br>
+        <select id="retirement" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+        </select><br><br>
 
-            <label for="risk-tolerance">What is your risk tolerance when it comes to investing?
-            </label><br>
-            <select id="risk-tolerance" name="risk-tolerance" required>
-                <option value="" disabled selected>Select an option</option>
-                <option value="conservative">Conservative</option>
-                <option value="moderate">Moderate</option>
-                <option value="aggressive">Aggressive</option>
-                <option value="unsure">Unsure</option>
-            </select><br><br>
+        <label for="risk-tolerance">What is your risk tolerance?</label><br>
+        <select id="risk-tolerance" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="conservative">Conservative</option>
+            <option value="moderate">Moderate</option>
+            <option value="aggressive">Aggressive</option>
+            <option value="unsure">Unsure</option>
+        </select><br><br>
 
-            <label for="major-events">Do you have any upcoming major financial events or life changes to consider?
-                (e.g., marriage, children, purchasing a home, career changes, etc.)
-            </label><br>
-            <select id="major-events" name="major-events" required>
-                <option value="" disabled selected>Select an option</option>
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
-            </select><br><br>
-            
-            <label for="track-investments">Are you comfortable with tracking and managing your investments regularly?
-                (e.g., do you prefer a hands-on approach or a more passive approach like robo-advisors?)
-            </label><br>
-            <select id="track-investments" name="track-investments" required>
-                <option value="" disabled selected>Select an option</option>
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
-                <option value="unsure">Unsure</option>
-            </select><br><br>
-            
-            
-            <input type="submit" value="Submit">
-        </form>
-    </body>
-    </html>
+        <label for="major-events">Do you have any upcoming major financial events?</label><br>
+        <select id="major-events" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+        </select><br><br>
+        
+        <label for="track-investments">Do you prefer a hands-on or passive investment approach?</label><br>
+        <select id="track-investments" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+            <option value="unsure">Unsure</option>
+        </select><br><br>
+        
+        <button type="button" onclick="submitForm()">Submit</button>
+        <p id="statusMessage"></p>
+    </form>
+
+    <script>
+        async function submitForm() {
+            let formData = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                age: document.getElementById("age").value,
+                monthly_income: document.getElementById("monthly-income").value,
+                debt: document.getElementById("debt").value,
+                retirement: document.getElementById("retirement").value,
+                risk_tolerance: document.getElementById("risk-tolerance").value,
+                major_events: document.getElementById("major-events").value,
+                track_investments: document.getElementById("track-investments").value
+            };
+
+            let response = await fetch("http://localhost:8000/submit_form", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            });
+
+            let result = await response.json();
+            document.getElementById("statusMessage").innerText = result.message;
+        }
+    </script>
+</body>
+</html>
