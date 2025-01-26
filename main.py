@@ -29,7 +29,7 @@ def get_user_data():
         return response.json()
     return {}
 
-st.title("🤖 Coinvo AI - Smart Investment Assistant")
+st.title("🤖 Coinvo AI:")
 st.write("💡 Ask about stock trends, investment strategies, and financial insights!")
 
 st.markdown("---")  # Adds a horizontal line
