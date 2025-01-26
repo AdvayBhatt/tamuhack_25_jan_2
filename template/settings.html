@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Key Setup</title>
+</head>
+<body>
+    <h2>Enter Your OpenAI API Key</h2>
+    <input type="password" id="apiKeyInput" placeholder="Enter your OpenAI API key">
+    <button onclick="saveApiKey()">Save API Key</button>
+    <p id="statusMessage"></p>
+
+    <script>
+        async function saveApiKey() {
+            let apiKey = document.getElementById("apiKeyInput").value;
+            if (!apiKey) {
+                document.getElementById("statusMessage").innerText = "Please enter a valid API key.";
+                return;
+            }
+
+            let response = await fetch("http://localhost:8000/save_api_key", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ api_key: apiKey })
+            });
+
+            let result = await response.json();
+            document.getElementById("statusMessage").innerText = result.message;
+        }
+    </script>
+</body>
+</html>
