@@ -11,6 +11,44 @@
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 </head>
 <style>
+
+@media (max-width: 768px) {
+  .hero-copy {
+    padding-top: 30px; 
+    height: auto; 
+  }
+  .features-wrap {
+    flex-direction: column; 
+    gap: 20px;
+  }
+  .feature {
+    flex: 1 1 100%; 
+  }
+  h1 {
+    font-size: 8vw; 
+  }
+  p {
+    font-size: 16px; 
+    margin: 0 auto; 
+  }
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1.5s ease-in forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   @media (max-width: 768px){
     .features-wrap{
       flex-direction: column;
@@ -45,7 +83,7 @@
             "
           >
           <div style="display: flex; align-items: center; justify-content: center;">
-            <img
+            <img class="fade-in"
               style="
                 width: 290px; 
                 height: autopx; 
@@ -58,7 +96,7 @@
             >
           
             <!-- Add a little top margin here to push “oinvo” down -->
-            <h1
+            <h1 class="fade-in"
               style="
                 font-size: 180px; 
                 color: #D6B807; 
@@ -70,7 +108,7 @@
           </div>
             
             <!-- Decrease or remove the margin-top to reduce vertical space under "oinvo" -->
-            <p class="subtext"
+            <p class="fade-in"
               style="
                 margin-top: -30px; /* was previously larger or negative */
                 margin-bottom: 0;
@@ -82,7 +120,7 @@
             >
               A personalized financial guidance powered by AI
             </p>
-            <p class="subtext"
+            <p class="fade-in"
               style="
                 margin-top: 5px; /* slight gap between lines */
                 margin-bottom: 0;
@@ -154,7 +192,7 @@
                         </div>
                         <h4 class="feature-title mt-24">Stock Watchlist</h4>
                         <p class="text-sm mb-0">
-                          
+                          Monitor your favorite stocks in real-time with detailed and accurate updates on price changes and performance, helping you stay informed and make smarter investment decisions effortlessly.
                         </p>
                         <a class="button button-primary" href="stockwatch.html" style="margin-top: 15px;"> Enter Watchlist</a>
                       </div>
