@@ -20,6 +20,19 @@ def save_api_key(api_key):
     with open(API_KEY_FILE, "w") as file:
         file.write(api_key)
 
+st.sidebar.title("Settings")
+api_key = st.sidebar.text_input("Enter OpenAI API Key", type="password", value=get_stored_api_key())
+
+if st.sidebar.button("Save API Key"):
+    save_api_key(api_key)
+    st.success("API Key saved successfully!")
+
+if not api_key:
+    st.warning("Please enter your OpenAI API key to use the chatbot.")
+    st.stop()
+else:
+    openai.api_key = api_key  # Assign user-provided key
+
 USER_DATA_URL = "http://localhost:8000/get_user_data"
 
 # Function to retrieve stored user financial data
@@ -36,19 +49,6 @@ st.markdown("---")  # Adds a horizontal line
 
 # Load user data for personalization
 user_data = get_user_data()
-
-st.sidebar.title("Settings")
-api_key = st.sidebar.text_input("Enter OpenAI API Key", type="password", value=get_stored_api_key())
-
-if st.sidebar.button("Save API Key"):
-    save_api_key(api_key)
-    st.success("API Key saved successfully!")
-
-if not api_key:
-    st.warning("Please enter your OpenAI API key to use the chatbot.")
-    st.stop()
-else:
-    openai.api_key = api_key  # Assign user-provided key
 
 #wow test
 
