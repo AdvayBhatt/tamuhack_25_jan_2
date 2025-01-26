@@ -320,7 +320,7 @@ st.markdown(f"""
     </style>
 
     <div class="button-container">
-        <a href="http://127.0.0.1:5500/tamuhack_25_jan_2/template/" target="_self">
+        <a href="http://127.0.0.1:5500/template/index.html" target="_self">
             <button class="custom-button">🏡 Back to Main Page</button>
         </a>
     </div>
