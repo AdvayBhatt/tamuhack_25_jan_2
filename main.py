@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import streamlit as st
 import yfinance as yf
 import os
-
+import requests
 
 API_KEY_FILE = "user_api_key.txt"
 
@@ -20,6 +20,23 @@ def save_api_key(api_key):
     with open(API_KEY_FILE, "w") as file:
         file.write(api_key)
 
+USER_DATA_URL = "http://localhost:8000/get_user_data"
+
+# Function to retrieve stored user financial data
+def get_user_data():
+    response = requests.get(USER_DATA_URL)
+    if response.status_code == 200:
+        return response.json()
+    return {}
+
+st.title("🤖 Coinvo AI - Smart Investment Assistant")
+st.write("💡 Ask about stock trends, investment strategies, and financial insights!")
+
+st.markdown("---")  # Adds a horizontal line
+
+# Load user data for personalization
+user_data = get_user_data()
+
 st.sidebar.title("Settings")
 api_key = st.sidebar.text_input("Enter OpenAI API Key", type="password", value=get_stored_api_key())
 
@@ -32,7 +49,6 @@ if not api_key:
     st.stop()
 else:
     openai.api_key = api_key  # Assign user-provided key
-
 
 #wow test
 
@@ -190,24 +206,31 @@ available_functions = {
 #streamli
 #streamlit implementation will change
 
-st.title("🤖 Coinvo AI - Smart Investment Assistant")
-st.write("💡 Ask about stock trends, investment strategies, and financial insights!")
-
-st.markdown("---")  # Adds a horizontal line
-
 if 'messages' not in st.session_state:
     st.session_state['messages'] = []
-    
 
 user_input = st.text_input('Your input:')
 
 if user_input:
     try:
+        # Create a personalized AI prompt using stored user financial data
+        personalized_prompt = f"""
+        You are a financial advisor providing investment strategies.
+        Here is the user's profile:
+        - Name: {user_data.get('name', 'Unknown')}
+        - Monthly Income: ${user_data.get('monthly_income', 'Unknown')}
+        - Debt: ${user_data.get('debt', 'Unknown')}
+        - Risk Tolerance: {user_data.get('risk_tolerance', 'Unknown')}
+        
+        Now answer the user's question: {user_input}
+        """
+        
         st.session_state['messages'].append({'role': 'user', 'content': f'{user_input}'})
         
         response = openai.ChatCompletion.create(
             model = 'gpt-3.5-turbo',
-            messages = st.session_state['messages'],
+            #messages = st.session_state['messages'],
+            messages=st.session_state['messages'] + [{"role": "system", "content": personalized_prompt}],
             functions = functions,
             function_call = 'auto'
         )
