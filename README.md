@@ -12,6 +12,7 @@ As there is not a deployed website yet, to run Coinvo, follow this:
 5. Open a new terminal and run 'python app.py' (make sure you are in the same directory)
 6. Open another new terminal and run 'streamlit run main.py' (again make sure you are in the right directory)
 7. This will automatically open the chatbot but to access the main website page, open index.html and if you are using VS Code, click Go Live in the bottom right corner
+8. Note that you will need your own API key in order to chat with Coinvo as we are not allowed to provide those through GitHub
 
 Enjoy the website!
 
