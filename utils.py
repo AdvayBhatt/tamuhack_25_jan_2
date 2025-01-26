@@ -3,16 +3,29 @@ import yfinance as yf
 
 WATCHLIST = 'watchlist.json'
 
+#def save_watchlist(tickers):
+#    with open(WATCHLIST, 'w') as f:
+#        json.dump(tickers, f)
+
 def save_watchlist(tickers):
-    with open(WATCHLIST, 'w') as f:
-        json.dump(tickers, f)
+    """ Save the updated watchlist to watchlist.txt """
+    try:
+        with open("watchlist.txt", "w") as f:
+            for ticker in tickers:
+                f.write(ticker + "\n")
+        print("✅ Watchlist updated:", tickers)  # Debugging
+    except Exception as e:
+        print("❌ Error saving watchlist:", e)  # Debugging
 
 def load_watchlist():
+    """ Load the watchlist from watchlist.txt """
     try:
-        with open(WATCHLIST, 'r') as f:
-            tickers = json.load(f)
+        with open("watchlist.txt", "r") as f:
+            tickers = [line.strip() for line in f.readlines()]
+        print("✅ Loaded watchlist from file:", tickers)  # Debugging
         return tickers
-    except FileNotFoundError as e:
+    except FileNotFoundError:
+        print("⚠️ Watchlist file not found, returning empty list")
         return []
 
 def fetch_stock_data(ticker):
