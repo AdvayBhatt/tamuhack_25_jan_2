@@ -1,12 +1,17 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 import os
 from utils import load_watchlist, save_watchlist, fetch_stock_data
+import subprocess
 
 TEMPLATE_DIR = os.path.abspath("template")
 STATIC_DIR = os.path.abspath("static")
 
 app = Flask(__name__, template_folder=TEMPLATE_DIR, static_folder=STATIC_DIR)
 app.secret_key = 'ABCDEFG'
+
+@app.route('/check-flask')
+def check_flask():
+    return jsonify({"running": True})  # Always returns running when Flask is up
 
 @app.route('/start-flask')
 def start_flask():
