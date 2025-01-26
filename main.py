@@ -4,11 +4,40 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
 import yfinance as yf
+import os
+
+
+API_KEY_FILE = "user_api_key.txt"
+
+# Load stored API key if available
+def get_stored_api_key():
+    if os.path.exists(API_KEY_FILE):
+        with open(API_KEY_FILE, "r") as file:
+            return file.read().strip()
+    return None
+
+def save_api_key(api_key):
+    with open(API_KEY_FILE, "w") as file:
+        file.write(api_key)
+
+st.sidebar.title("Settings")
+api_key = st.sidebar.text_input("Enter OpenAI API Key", type="password", value=get_stored_api_key())
+
+if st.sidebar.button("Save API Key"):
+    save_api_key(api_key)
+    st.success("API Key saved successfully!")
+
+if not api_key:
+    st.warning("Please enter your OpenAI API key to use the chatbot.")
+    st.stop()
+else:
+    openai.api_key = api_key  # Assign user-provided key
 
 
 #wow test
 
-openai.api_key = open('API_KEY', 'r').read()
+#openai.api_key = open('API_KEY', 'r').read()
+    
 
 def get_stock_price(ticker):
     return str(yf.Ticker(ticker).history(period ='1y').iloc[-1].Close)
@@ -161,8 +190,10 @@ available_functions = {
 #streamli
 #streamlit implementation will change
 
-st.title('Coinvo Chatbot Assistant')
-st.write("Put your input below:")
+st.title("🤖 Coinvo AI - Smart Investment Assistant")
+st.write("💡 Ask about stock trends, investment strategies, and financial insights!")
+
+st.markdown("---")  # Adds a horizontal line
 
 if 'messages' not in st.session_state:
     st.session_state['messages'] = []
