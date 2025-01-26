@@ -1,7 +1,7 @@
 body {
     background-color: black;
     font-family: 'Arial', sans-serif;
-    color: #ffffff; /* White text */
+    color: #ffffff; 
     margin: 0;
     padding: 0; 
   }
@@ -16,7 +16,7 @@ body {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 2rem;
-    color: #08c8ae; /* White text for header */
+    color: #08c8ae; 
   }
   
   form {
@@ -24,13 +24,13 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+    background-color: rgba(0, 0, 0, 0.5); 
     border-radius: 10px;
     padding: 2rem;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
     max-width: 500px;
     margin: 0 auto;
-    color: #ffffff; /* White text for readability */
+    color: #ffffff; 
   }
   
   label {
@@ -46,19 +46,19 @@ body {
     margin-bottom: 1.5rem;
     border: none;
     border-radius: 5px;
-    background-color: #252537; /* Dark input background */
-    color: #ffffff; /* White text */
+    background-color: #252537; 
+    color: #ffffff; 
   }
   
   input:focus,
   select:focus {
     outline: none;
-    border: 2px solid #007bff; /* Blue border on focus */
-    background-color: #303048; /* Slightly lighter background */
+    border: 2px solid #007bff; 
+    background-color: #303048; 
   }
   
   input[type="submit"] {
-    background-color: #007bff; /* Blue button */
+    background-color: #007bff; 
     color: #ffffff;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -69,13 +69,40 @@ body {
   }
   
   input[type="submit"]:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #0056b3; 
   }
   
   form select {
-    appearance: none; /* Remove default select arrow styling */
+    appearance: none; 
     background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23FFF' d='M2 0L0 2h4z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1rem center;
     background-size: 0.75rem;
   }
+
+  .button-primary {
+    display: inline-block;
+    background:#0982f4;
+    background:linear-gradient(65deg, #0275e1 0, #198ffd 100%); 
+    color: white;
+    font-size: 16px;
+    font-family: 'IBM Plex Sans', 'sans-serif'; 
+    font-weight: 600;
+    text-align: center;
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 5px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    cursor: pointer;
+    text-decoration: none; 
+    outline: 1px dotted #000;
+    transition: all 0.3s ease; 
+  }
+  
+  .button-primary:hover {
+    background: linear-gradient(90deg, #0056d6, #003ea3); 
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); 
+    transform: translateY(-2px); 
+  }
+
+  
