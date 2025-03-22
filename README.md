@@ -19,7 +19,7 @@ Enjoy the website!
 
 ## Inspiration
 
-In a world flooded with financial tools, we often found ourselves overwhelmed of where to turn for clear, actionable insights. That feeling inspired us to create Coinvo, a platform that combines real-time stock tracking with the guidance of an AI-powered assistant. Coinvo bridges the gap between data and understanding, empowering everyone from casual investors to financial enthusiasts to make informed decisions.
+In a world flooded with financial tools, we often found ourselves overwhelmed of where to turn for clear, actionable insights. That feeling inspired us to create Coinvo, a platform that combines real-time stock tracking with the guidance of an AI-powered assistant. Coinvo bridges the gap between data and understanding, empowering everyone from casual investors to financial enthusiasts to make informed decisions. We would like to thank the youtube channel NeuralNine for inspiration for components of the website.
 ## What it does
 Coinvo is your personal financial co-pilot. It integrates a stock ticker for real-time market data and an AI helper bot that answers questions, offers insights, and provides context on financial topics. Whether you're analyzing stock performance, seeking investment strategies, or simply curious about the market, Coinvo is here to make finance approachable and actionable.
 
